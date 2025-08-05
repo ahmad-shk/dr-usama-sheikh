@@ -24,7 +24,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await axios.post("/api/submit", formData); // ✅ JSON bhej raha hai
+    const response = await axios.post("pages/api/submit", formData); // ✅ JSON bhej raha hai
 
     if (response.data.result === "Success") {
       alert("Form submitted successfully!");
