@@ -9,9 +9,9 @@ export default async function handler(req, res) {
 
   try {
     const response = await axios.post(GOOGLE_SCRIPT_URL, req.body);
-    return res.status(200).json({ success: true, result: response.data });
+    return res.status(200).json({ success: true, result: response.data }); // ✅ Always return valid JSON
   } catch (error) {
     console.error("Google Sheet Error:", error.message);
-    return res.status(500).json({ success: false, error: error.message });
+    return res.status(500).json({ success: false, error: error.message }); // ✅ Valid JSON on error
   }
 }

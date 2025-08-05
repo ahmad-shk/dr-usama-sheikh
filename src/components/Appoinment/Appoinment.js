@@ -20,38 +20,45 @@ const Appoinment = () => {
   };
 
  const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await fetch("/api/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const response = await fetch("/api/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-      const result = await response.json();
-      if (result.success) {
-        alert("Form submitted successfully!");
-        // Reset form
-        setFormData({
-          clinic: "",
-          service: "",
-          date: "",
-          time: "",
-          name: "",
-          phone: "",
-          message: "",
-        });
-      } else {
-        alert("Submission failed. Please try again.");
-      }
-    } catch (error) {
-      alert("Error submitting form.");
-      console.error(error);
+    // ✅ Check if response is OK and contains JSON
+    if (!response.ok) {
+      const errorText = await response.text(); // Read text even if not JSON
+      console.error("Server error:", errorText);
+      alert("Server responded with error.");
+      return;
     }
-  };
+
+    const result = await response.json();
+    if (result.success) {
+      alert("Form submitted successfully!");
+      setFormData({
+        clinic: "",
+        service: "",
+        date: "",
+        time: "",
+        name: "",
+        phone: "",
+        message: "",
+      });
+    } else {
+      alert("Submission failed. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("Error submitting form.");
+  }
+};
 
 
   return (
