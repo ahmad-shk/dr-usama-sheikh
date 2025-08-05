@@ -26,12 +26,12 @@ export default function Features() {
                   Secure appointments the principle of online medicine and online continuous care and support for you
                   and your loved ones.
                 </p>
-                <Button
+                <a
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
-                  href="#appoinment"
+                  href="#contact"
                 >
                   MAKE APPOINTMENT
-                </Button>
+                </a>
               </CardContent>
             </Card>
           </div>
@@ -92,12 +92,15 @@ export default function Features() {
                   Experience all-time support for you. Contact the difference for physical or family medicine, answering
                   confidential calls. Connect with us for any urgent needs.
                 </p>
-                <Button
-                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
+                <a
                   href="https://wa.me/923173070894"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
                 >
                   CALL NOW
-                </Button>
+                </a>
+
               </CardContent>
             </Card>
           </div>

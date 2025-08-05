@@ -73,7 +73,7 @@ const Footer = () => {
           <ul className="space-y-3 text-blue-200">
             <li>
               <a
-                href="#heroBanner"
+                href="#home"
                 className="hover:text-blue-50 transition-colors duration-200 flex items-center group"
               >
                 <span className="mr-2 text-blue-400 group-hover:translate-x-1 transition-transform duration-200">
@@ -100,7 +100,7 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="#appointment"
+                href="#contact"
                 className="hover:text-blue-50 transition-colors duration-200 flex items-center group"
               >
                 <span className="mr-2 text-blue-400 group-hover:translate-x-1 transition-transform duration-200">

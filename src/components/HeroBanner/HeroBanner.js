@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react" // Import ArrowRight icon
 const HeroBanner = () => (
   <section
     className="relative mt-20 bg-white min-h-[650px] md:min-h-[700px] flex items-center overflow-hidden"
-    id="heroBanner"
+    id="home"
   >
     {/* Background Image (Hallway) */}
     <div
