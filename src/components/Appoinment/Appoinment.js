@@ -170,6 +170,7 @@ const Appoinment = () => {
             <div className="md:col-span-2 flex justify-start mt-2">
               <button
                 type="submit"
+                disabled={true} // Disabled button for now
                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition flex items-center gap-2 shadow-lg"
               >
                 MAKE APPOINTMENT <ArrowRight className="text-lg" />
