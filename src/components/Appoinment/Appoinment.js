@@ -23,24 +23,19 @@ const Appoinment = () => {
   e.preventDefault();
 
   try {
-    const response = await fetch("/api/submit", {
+    const formBody = new URLSearchParams(formData).toString();
+
+    const response = await fetch("https://script.google.com/macros/s/AKfycbxabH6-NEbRuoIZNgt2vmn_9zmFkO6e2SHeiMaZDz3j6v5KZMq5FxTfcauLJCkRz4LN/exec", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(formData),
+      body: formBody,
     });
 
-    // ✅ Check if response is OK and contains JSON
-    if (!response.ok) {
-      const errorText = await response.text(); // Read text even if not JSON
-      console.error("Server error:", errorText);
-      alert("Server responded with error.");
-      return;
-    }
-
     const result = await response.json();
-    if (result.success) {
+
+    if (result.result === "Success") {
       alert("Form submitted successfully!");
       setFormData({
         clinic: "",
@@ -59,6 +54,7 @@ const Appoinment = () => {
     alert("Error submitting form.");
   }
 };
+
 
 
   return (
@@ -170,7 +166,7 @@ const Appoinment = () => {
             <div className="md:col-span-2 flex justify-start mt-2">
               <button
                 type="submit"
-                disabled={true} // Disabled button for now
+                // disabled={true} // Disabled button for now
                 className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition flex items-center gap-2 shadow-lg"
               >
                 MAKE APPOINTMENT <ArrowRight className="text-lg" />
