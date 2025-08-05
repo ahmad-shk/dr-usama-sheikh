@@ -19,18 +19,24 @@ const Appoinment = () => {
     }));
   };
 
- const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const formBody = new URLSearchParams(formData).toString();
-
     const response = await fetch("https://script.google.com/macros/s/AKfycbxabH6-NEbRuoIZNgt2vmn_9zmFkO6e2SHeiMaZDz3j6v5KZMq5FxTfcauLJCkRz4LN/exec", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: formBody,
+      body: JSON.stringify({
+        clinic: formData.clinic,
+        service: formData.service,
+        date: formData.date,
+        time: formData.time,
+        name: formData.name,
+        phone: formData.phone,
+        message: formData.message,
+      }),
     });
 
     const result = await response.json();
@@ -54,6 +60,7 @@ const Appoinment = () => {
     alert("Error submitting form.");
   }
 };
+
 
 
 
