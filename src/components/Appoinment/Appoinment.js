@@ -23,17 +23,9 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   try {
-    const response = await fetch("/api/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json", // local only
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await axios.post("/api/submit", formData); // ✅ JSON bhej raha hai
 
-    const result = await response.json();
-
-    if (result.result === "Success") {
+    if (response.data.result === "Success") {
       alert("Form submitted successfully!");
       setFormData({
         clinic: "",
@@ -52,7 +44,6 @@ const handleSubmit = async (e) => {
     alert("Error submitting form.");
   }
 };
-
 
 
 
