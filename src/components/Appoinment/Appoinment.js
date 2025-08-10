@@ -33,7 +33,7 @@ const Appoinment = () => {
         values
       );
 
-      if (response.data?.success || response.status === 200) {
+      if (response.data?.success || response.status === 201) {
         alert("✅ Appointment successfully booked!");
         resetForm();
       } else {
