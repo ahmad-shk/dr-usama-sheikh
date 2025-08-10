@@ -33,7 +33,7 @@ const HeroBanner = () => (
           holistic well-being, nurturing both your mental and physical health with meticulous care.
         </p>
         <a
-          href="#appointment"
+          href="#contact"
           className="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-full transition duration-200 shadow-lg text-sm uppercase tracking-wide group"
         >
           MAKE APPOINTMENT

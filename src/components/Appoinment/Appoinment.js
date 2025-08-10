@@ -1,9 +1,10 @@
 import axios from "axios";
 import { Phone, ArrowRight } from "lucide-react";
-import { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
 
 const Appoinment = () => {
-  const [formData, setFormData] = useState({
+  const initialValues = {
     clinic: "",
     service: "",
     date: "",
@@ -11,43 +12,38 @@ const Appoinment = () => {
     name: "",
     phone: "",
     message: ""
-  });
-
-  const handleChange = (e) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const validationSchema = Yup.object({
+    clinic: Yup.string().required("Clinic select karna zaroori hai"),
+    service: Yup.string().required("Service select karna zaroori hai"),
+    date: Yup.string().required("Date select karna zaroori hai"),
+    time: Yup.string().required("Time select karna zaroori hai"),
+    name: Yup.string().required("Naam likhna zaroori hai"),
+    phone: Yup.string()
+      .required("Phone number zaroori hai")
+      .matches(/^(\+92|0)3[0-9]{9}$/, "Valid Pakistani phone number likhen"),
+    message: Yup.string()
+  });
 
-  try {
-    const response = await axios.post("/api/submit", formData);  // ✅ JSON bhej raha hai
+  const handleSubmit = async (values, { resetForm }) => {
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/api/appointmentRoutes`,
+        values
+      );
 
-    if (response.data.result === "Success") {
-      alert("Form submitted successfully!");
-      setFormData({
-        clinic: "",
-        service: "",
-        date: "",
-        time: "",
-        name: "",
-        phone: "",
-        message: "",
-      });
-    } else {
-      alert("Submission failed. Please try again.");
+      if (response.data?.success || response.status === 200) {
+        alert("✅ Appointment successfully booked!");
+        resetForm();
+      } else {
+        alert("❌ Submission failed. Try again.");
+      }
+    } catch (error) {
+      console.error("Form bhejnay mein error:", error);
+      alert("⚠️ Form send nahi ho saka.");
     }
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    alert("Error submitting form.");
-  }
-};
-
-
-
+  };
 
   return (
     <section className="py-16 bg-white" id="contact">
@@ -80,91 +76,72 @@ const handleSubmit = async (e) => {
           <p className="text-gray-600 mb-6">
             The process of booking an appointment is simple. Just fill out the form below, and we'll get back to you shortly.
           </p>
-          <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <select
-                name="clinic"
-                value={formData.clinic}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700"
-              >
-                <option value="">Choose Clinic</option>
-                <option value="Usama Sheikh">Usama Sheikh Clinic</option>
-                <option value="usama">Usama Clinic</option>
-              </select>
-            </div>
-            <div>
-              <select
-                name="service"
-                value={formData.service}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700"
-              >
-                <option value="">Select Services</option>
-                <option value="checkup">General Checkup</option>
-                <option value="consultation">Consultation</option>
-              </select>
-            </div>
-            <div>
-              <input
-                type="text"
-                name="date"
-                placeholder="dd/mm/yyyy"
-                value={formData.date}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none placeholder-gray-500 text-gray-700"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="time"
-                placeholder="Time"
-                value={formData.time}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none placeholder-gray-500 text-gray-700"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="name"
-                placeholder="Full Name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none placeholder-gray-500 text-gray-700"
-              />
-            </div>
-            <div>
-              <input
-                type="text"
-                name="phone"
-                placeholder="Phone Number"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none placeholder-gray-500 text-gray-700"
-              />
-            </div>
-            <div className="md:col-span-2">
-              <textarea
-                name="message"
-                rows="4"
-                placeholder="Your Message"
-                value={formData.message}
-                onChange={handleChange}
-                className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none placeholder-gray-500 text-gray-700 resize-y"
-              ></textarea>
-            </div>
-            <div className="md:col-span-2 flex justify-start mt-2">
-              <button
-                type="submit"
-                // disabled={true} // Disabled button for now
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition flex items-center gap-2 shadow-lg"
-              >
-                MAKE APPOINTMENT <ArrowRight className="text-lg" />
-              </button>
-            </div>
-          </form>
+
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleSubmit}
+          >
+            {() => (
+              <Form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Clinic */}
+                <div>
+                  <Field as="select" name="clinic" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700">
+                    <option value="">Choose Clinic</option>
+                    <option value="Usama Sheikh">Usama Sheikh Clinic</option>
+                    <option value="usama">Usama Clinic</option>
+                  </Field>
+                  <ErrorMessage name="clinic" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* Service */}
+                <div>
+                  <Field as="select" name="service" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700">
+                    <option value="">Select Services</option>
+                    <option value="checkup">General Checkup</option>
+                    <option value="consultation">Consultation</option>
+                  </Field>
+                  <ErrorMessage name="service" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* Date */}
+                <div>
+                  <Field type="date" name="date" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700" />
+                  <ErrorMessage name="date" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* Time */}
+                <div>
+                  <Field type="time" name="time" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700" />
+                  <ErrorMessage name="time" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* Name */}
+                <div>
+                  <Field type="text" name="name" placeholder="Full Name" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700" />
+                  <ErrorMessage name="name" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* Phone */}
+                <div>
+                  <Field type="text" name="phone" placeholder="Phone Number" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700" />
+                  <ErrorMessage name="phone" component="div" className="text-red-500 text-sm mt-1" />
+                </div>
+
+                {/* Message */}
+                <div className="md:col-span-2">
+                  <Field as="textarea" name="message" rows="4" placeholder="Your Message" className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded focus:outline-none text-gray-700 resize-y" />
+                </div>
+
+                {/* Submit */}
+                <div className="md:col-span-2 flex justify-start mt-2">
+                  <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition flex items-center gap-2 shadow-lg">
+                    MAKE APPOINTMENT <ArrowRight className="text-lg" />
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
         </div>
       </div>
     </section>
