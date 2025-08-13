@@ -11,7 +11,9 @@ const Appoinment = () => {
     time: "",
     name: "",
     phone: "",
-    message: ""
+    message: "",
+    amount: 0,
+    status: "pending"
   };
 
   const validationSchema = Yup.object({
