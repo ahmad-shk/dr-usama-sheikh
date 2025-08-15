@@ -67,11 +67,13 @@ export default function Features() {
                       VIEW SCHEDULE
                     </Button>
                   </DialogTrigger>
-                  <DialogContent className="w-full max-w-5xl p-6 overflow-y-auto max-h-[90vh]">
+                  <DialogContent className="w-full sm:max-w-7xl p-4 sm:p-6 overflow-hidden">
                     <DialogHeader className="p-4 border-b">
                       <DialogTitle>Clinic Schedule</DialogTitle>
                     </DialogHeader>
-                    <ScheduleCalendar />
+                    <div className="max-h-[calc(100vh-150px)] overflow-hidden">
+                      <ScheduleCalendar />
+                    </div>
                   </DialogContent>
                 </Dialog>
               </CardContent>
