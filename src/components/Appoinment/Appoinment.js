@@ -23,11 +23,11 @@ const PatientQuery = () => {
   const handleSubmit = async (values, { resetForm }) => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API_BASE_URL}/api/patientQueries`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/queries`,
         values
       );
 
-      if (response.data?.success || response.status === 201) {
+      if (response.data?.success || response.status === 200) {
         alert("✅ Query successfully sent!");
         resetForm();
       } else {
