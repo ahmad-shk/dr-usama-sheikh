@@ -1,52 +1,50 @@
 import { Stethoscope, Heart, Activity, Pill, TestTube, Apple } from "lucide-react"
 import { Card, CardContent } from "../ui/card"
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function Services() {
+  const { t } = useTranslation()
   const services = [
     {
       icon: Stethoscope,
-      title: "Physical Examination",
-      description: "Health assessments tailored to individual needs, including vital signs monitoring.",
+      title: t('service_physical_title'),
+      description: t('service_physical_desc'),
       color: "bg-blue-50 text-blue-600 border-blue-100",
       hoverColor: "hover:bg-blue-100",
     },
     {
       icon: Heart,
-      title: "Care and Wellness",
-      description: "Preventative care plans to promote overall health and well-being, including vaccinations.",
+      title: t('service_care_title'),
+      description: t('service_care_desc'),
       color: "bg-red-50 text-red-600 border-red-100",
       hoverColor: "hover:bg-red-100",
     },
     {
       icon: Activity,
-      title: "Disease Management",
-      description:
-        "Treatment plans for managing chronic conditions such as diabetes, hypertension, arthritis, and more.",
+      title: t('service_disease_title'),
+      description: t('service_disease_desc'),
       color: "bg-green-50 text-green-600 border-green-100",
       hoverColor: "hover:bg-green-100",
     },
     {
       icon: Pill,
-      title: "Medication",
-      description:
-        "Personalized medication management plans to ensure safe and effective use of prescriptions and medications.",
+      title: t('service_medication_title'),
+      description: t('service_medication_desc'),
       color: "bg-purple-50 text-purple-600 border-purple-100",
       hoverColor: "hover:bg-purple-100",
     },
     {
       icon: TestTube,
-      title: "Diagnostic Testing",
-      description:
-        "In-house diagnostic testing services, including laboratory testing, imaging studies for rapid, personalized care.",
+      title: t('service_diagnostic_title'),
+      description: t('service_diagnostic_desc'),
       color: "bg-orange-50 text-orange-600 border-orange-100",
       hoverColor: "hover:bg-orange-100",
     },
     {
       icon: Apple,
-      title: "Nutritional Guidance",
-      description:
-        "Personalized dietary assessments and nutritional counseling to support optimal health and wellness.",
+      title: t('service_nutrition_title'),
+      description: t('service_nutrition_desc'),
       color: "bg-emerald-50 text-emerald-600 border-emerald-100",
       hoverColor: "hover:bg-emerald-100",
     },
@@ -60,9 +58,9 @@ export default function Services() {
           <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-6">
             <Heart className="w-8 h-8 text-blue-600" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">Our Services</h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">{t('ourServices')}</h2>
           <p className="text-gray-600 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
-            Comprehensive healthcare services at Dr. Usama Sheikh Sanchez&apos;s Clinic
+            {t('comprehensiveHealthcare')}
           </p>
           <div className="w-24 h-1 bg-blue-600 mx-auto mt-6 rounded-full"></div>
         </div>

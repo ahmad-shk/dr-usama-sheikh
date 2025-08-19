@@ -1,9 +1,11 @@
 import axios from "axios";
 import { Phone, ArrowRight } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
 const PatientQuery = () => {
+  const { t } = useTranslation();
   const initialValues = {
     name: "",
     phone: "",
@@ -66,10 +68,8 @@ const PatientQuery = () => {
 
         {/* Right Side Form */}
         <div className="w-full lg:w-1/2">
-          <h2 className="text-4xl font-bold text-blue-700 mb-2">Send Your Query</h2>
-          <p className="text-gray-600 mb-6">
-            Please fill out your details below and select the department related to your concern. We will respond as soon as possible.
-          </p>
+          <h2 className="text-4xl font-bold text-blue-700 mb-2">{t('sendQuery')}</h2>
+          <p className="text-gray-600 mb-6">{t('fillDetails')}</p>
 
           <Formik
             initialValues={initialValues}

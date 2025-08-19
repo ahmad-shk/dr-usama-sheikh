@@ -1,9 +1,13 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react" // Import useEffect and useRef
+import { useState, useEffect, useRef } from "react"
 import { Menu, CalendarPlus } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 const Header = () => {
+  const { i18n } = useTranslation()
+  const [lang, setLang] = useState(i18n.language || "en")
+  const [dropdownOpen, setDropdownOpen] = useState(false)
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isVisible, setIsVisible] = useState(true) // State to control header visibility
   const lastScrollY = useRef(0) // Ref to store the last scroll position
@@ -61,6 +65,52 @@ const Header = () => {
             DR Usama Sheikh
           </span>
         </a>
+        {/* Language Switcher */}
+        <div className="ml-4 relative group">
+          <div className="relative">
+            <button
+              className="flex items-center bg-white/90 rounded-xl shadow-lg border border-blue-200 px-3 py-1.5 font-semibold text-blue-900 transition-all duration-200 focus:ring-2 focus:ring-blue-400 hover:bg-blue-50/90 min-w-[110px] gap-2 custom-dropdown-btn"
+              aria-haspopup="listbox"
+              aria-expanded={dropdownOpen}
+              tabIndex={0}
+              onClick={() => setDropdownOpen((open) => !open)}
+              onBlur={() => setTimeout(() => setDropdownOpen(false), 120)}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-blue-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 18.523 2 13 6.477 3 12 3zm0 0c2.21 0 4 4.477 4 10s-1.79 10-4 10-4-4.477-4-10 1.79-10 4-10z" /></svg>
+              <span>{lang === 'en' ? 'English' : 'اردو'}</span>
+              <svg className={`w-4 h-4 text-blue-700 ml-1 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" /></svg>
+            </button>
+            {dropdownOpen && (
+              <ul
+                className="absolute left-0 mt-1 w-full bg-white rounded-xl shadow-xl border border-blue-200 z-20 animate-fade-in custom-dropdown-list"
+                tabIndex={-1}
+                role="listbox"
+              >
+                <li
+                  className={`px-4 py-2 cursor-pointer hover:bg-blue-100 text-blue-900 rounded-t-xl ${lang === 'en' ? 'font-bold bg-blue-50' : ''}`}
+                  onClick={() => { setLang('en'); i18n.changeLanguage('en'); setDropdownOpen(false); }}
+                  role="option"
+                  aria-selected={lang === 'en'}
+                >English</li>
+                <li
+                  className={`px-4 py-2 cursor-pointer hover:bg-blue-100 text-blue-900 rounded-b-xl ${lang === 'ur' ? 'font-bold bg-blue-50' : ''}`}
+                  onClick={() => { setLang('ur'); i18n.changeLanguage('ur'); setDropdownOpen(false); }}
+                  role="option"
+                  aria-selected={lang === 'ur'}
+                >اردو</li>
+              </ul>
+            )}
+          </div>
+          <style>{`
+            .custom-dropdown-list.animate-fade-in {
+              animation: fadeIn 0.18s ease;
+            }
+            @keyframes fadeIn {
+              from { opacity: 0; transform: translateY(-8px); }
+              to { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
+        </div>
         <button
           className="md:hidden text-white hover:text-blue-200 focus:outline-none transition-transform duration-300 active:scale-95"
           type="button"
@@ -73,21 +123,25 @@ const Header = () => {
           className={`w-full md:flex md:items-center md:w-auto ${isNavOpen ? "block" : "hidden"} md:static absolute top-full left-0 bg-blue-900/90 md:bg-transparent shadow-xl md:shadow-none rounded-b-xl md:rounded-none transition-all duration-300 ease-in-out ${isNavOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 md:opacity-100 md:translate-y-0"}`}
         >
           <ul className="flex flex-col md:flex-row md:space-x-6 lg:space-x-8 mt-4 md:mt-0 px-6 md:px-0 py-4 md:py-0 items-center">
-            {["Home", "About", "Services", "Contact"].map((item, index) => (
-              <li key={item} className="group relative">
+            {[
+              { key: "home", href: "#home" },
+              { key: "about", href: "#about" },
+              { key: "services", href: "#services" },
+              { key: "contact", href: "#contact" },
+            ].map((item) => (
+              <li key={item.key} className="group relative">
                 <a
                   className="relative text-white font-semibold px-4 py-2 rounded-lg transition duration-300 hover:text-blue-100 block overflow-hidden hover:bg-white/10 transform hover:scale-105 hover:shadow-md"
-                  href={`#${item.toLowerCase().replace(" ", "")}`}
+                  href={item.href}
                 >
-                  {item}
-                  {/* Animated underline */}
+                  {/* Use translation key */}
+                  {i18n.t(item.key)}
                   <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-300 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-                  {/* Subtle text shadow on hover */}
                   <span
                     className="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     style={{ textShadow: "0 0 8px rgba(255,255,255,0.5)" }}
                   >
-                    {item}
+                    {i18n.t(item.key)}
                   </span>
                 </a>
               </li>
@@ -95,13 +149,28 @@ const Header = () => {
             <li className="mt-6 md:mt-0 md:ml-8">
               <a
                 href="#appointment"
-                className="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden"
+                className="inline-flex items-center justify-center px-7 py-3 border-2 border-blue-300 text-base font-bold rounded-full text-white bg-gradient-to-r from-blue-600 via-purple-500 to-blue-700 shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden backdrop-blur-md glassmorphism-btn"
+                style={{ position: 'relative', zIndex: 1 }}
               >
-                <CalendarPlus className="w-5 h-5 mr-2" />
-                Book Appointment
-                {/* Subtle glow effect on hover */}
-                <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full animate-pulse-fast"></span>
+                <span className="absolute -inset-1 rounded-full bg-gradient-to-r from-blue-400 via-purple-400 to-blue-600 opacity-40 blur-lg animate-glow z-0"></span>
+                <CalendarPlus className="w-5 h-5 mr-2 z-10" />
+                <span className="z-10">{i18n.t("appointment")}</span>
               </a>
+              <style>{`
+                .glassmorphism-btn {
+                  background: rgba(30, 58, 138, 0.7);
+                  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+                  border: 1.5px solid rgba(59,130,246,0.25);
+                  backdrop-filter: blur(6px);
+                }
+                .animate-glow {
+                  animation: glowPulse 2.2s infinite alternate;
+                }
+                @keyframes glowPulse {
+                  0% { opacity: 0.25; }
+                  100% { opacity: 0.55; }
+                }
+              `}</style>
             </li>
           </ul>
         </div>

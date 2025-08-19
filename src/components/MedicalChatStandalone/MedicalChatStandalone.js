@@ -20,6 +20,12 @@ const MedicalChatStandalone = () => {
         "How to prepare for surgery?",
         "What is arthroscopic surgery?",
         "Recovery time after knee replacement?",
+        "What is the best diet after surgery?",
+        "How to manage post-surgery pain?",
+        "What are the risks of anesthesia?",
+        "How to prevent infection after surgery?",
+        "When can I return to work after surgery?",
+        "What medicines should I avoid before surgery?"
       ],
       answers: {
         "What are the symptoms of appendicitis?":
@@ -30,6 +36,18 @@ const MedicalChatStandalone = () => {
           "Arthroscopic surgery is a minimally invasive procedure using a small camera (arthroscope) inserted through tiny incisions to diagnose and treat joint problems, particularly in knees, shoulders, and hips.",
         "Recovery time after knee replacement?":
           "Knee replacement recovery typically takes 3-6 months. Most patients can walk with assistance within 24-48 hours, return to normal activities in 6-8 weeks, and achieve full recovery in 3-6 months with proper rehabilitation.",
+        "What is the best diet after surgery?":
+          "A balanced diet rich in protein, vitamins, and minerals helps healing. Include lean meats, eggs, dairy, fruits, vegetables, and whole grains. Drink plenty of water and avoid junk food.",
+        "How to manage post-surgery pain?":
+          "Follow your doctor's instructions for pain medication. Use ice packs, keep the surgical area elevated, and rest as advised. Report severe or unusual pain to your doctor.",
+        "What are the risks of anesthesia?":
+          "Risks of anesthesia include allergic reactions, breathing problems, nausea, vomiting, and rarely, serious complications. Your anesthesiologist will review your health to minimize risks.",
+        "How to prevent infection after surgery?":
+          "Keep the wound clean and dry, wash hands before touching the area, take prescribed antibiotics, and follow all wound care instructions. Contact your doctor if you notice redness, swelling, or fever.",
+        "When can I return to work after surgery?":
+          "Return to work depends on the type of surgery and your recovery. For minor procedures, it may be a few days; for major surgery, several weeks. Ask your doctor for specific advice.",
+        "What medicines should I avoid before surgery?":
+          "Avoid blood thinners (like aspirin), anti-inflammatory drugs, and herbal supplements before surgery unless your doctor says otherwise. Always inform your doctor about all medicines you take."
       },
       online: "Online • Ready to help",
       welcome: "Hello! I'm your medical assistant. How can I help you today?",
@@ -49,6 +67,12 @@ const MedicalChatStandalone = () => {
         "سرجری کی تیاری کیسے کریں؟",
         "آرتھروسکوپک سرجری کیا ہے؟",
         "گھٹنے کی تبدیلی کے بعد صحت یابی کا وقت؟",
+        "سرجری کے بعد بہترین غذا کیا ہے؟",
+        "سرجری کے بعد درد کا علاج کیسے کریں؟",
+        "بے ہوشی (انستھیزیا) کے کیا خطرات ہیں؟",
+        "سرجری کے بعد انفیکشن سے کیسے بچیں؟",
+        "سرجری کے بعد کب کام پر واپس جا سکتے ہیں؟",
+        "سرجری سے پہلے کون سی دوائیں نہ لیں؟"
       ],
       answers: {
         "اپینڈکس کی علامات کیا ہیں؟":
@@ -59,6 +83,18 @@ const MedicalChatStandalone = () => {
           "آرتھروسکوپک سرجری ایک کم تکلیف دہ طریقہ کار ہے جس میں چھوٹے کیمرے کا استعمال کرتے ہوئے جوڑوں کے مسائل کی تشخیص اور علاج کیا جاتا ہے۔",
         "گھٹنے کی تبدیلی کے بعد صحت یابی کا وقت؟":
           "گھٹنے کی تبدیلی کے بعد صحت یابی عام طور پر 3-6 مہینے لگتے ہیں۔ زیادہ تر مریض 24-48 گھنٹوں میں مدد سے چل سکتے ہیں، 6-8 ہفتوں میں عام سرگرمیوں میں واپس آ سکتے ہیں۔",
+        "سرجری کے بعد بہترین غذا کیا ہے؟":
+          "سرجری کے بعد متوازن غذا جیسے گوشت، انڈے، دودھ، پھل، سبزیاں اور اناج کھائیں۔ پانی زیادہ پئیں اور بازاری کھانوں سے پرہیز کریں۔",
+        "سرجری کے بعد درد کا علاج کیسے کریں؟":
+          "ڈاکٹر کی ہدایت کے مطابق درد کی دوا لیں، برف کی پٹیاں کریں، متاثرہ جگہ کو اونچا رکھیں اور آرام کریں۔ غیر معمولی یا شدید درد کی صورت میں فوراً ڈاکٹر سے رابطہ کریں۔",
+        "بے ہوشی (انستھیزیا) کے کیا خطرات ہیں؟":
+          "انستھیزیا کے خطرات میں الرجی، سانس کی تکلیف، متلی، قے اور شاذ و نادر سنگین پیچیدگیاں شامل ہیں۔ آپ کا انستھیزیولوجسٹ آپ کی صحت کو مدنظر رکھ کر خطرات کم کرے گا۔",
+        "سرجری کے بعد انفیکشن سے کیسے بچیں؟":
+          "زخم کو صاف اور خشک رکھیں، ہاتھ دھو کر پٹی تبدیل کریں، ڈاکٹر کی ہدایت کے مطابق اینٹی بایوٹک لیں اور اگر لالی، سوجن یا بخار ہو تو فوراً ڈاکٹر سے رابطہ کریں۔",
+        "سرجری کے بعد کب کام پر واپس جا سکتے ہیں؟":
+          "واپسی کا وقت سرجری اور صحت یابی پر منحصر ہے۔ چھوٹی سرجری کے بعد چند دن، بڑی سرجری کے بعد کئی ہفتے لگ سکتے ہیں۔ اپنے ڈاکٹر سے مشورہ کریں۔",
+        "سرجری سے پہلے کون سی دوائیں نہ لیں؟":
+          "سرجری سے پہلے خون پتلا کرنے والی ادویات (جیسے اسپرین)، درد کی دوائیں اور ہربل سپلیمنٹس نہ لیں جب تک ڈاکٹر اجازت نہ دے۔ اپنے ڈاکٹر کو تمام ادویات کے بارے میں ضرور بتائیں۔"
       },
       online: "آن لائن • مدد کے لیے تیار",
       welcome: "السلام علیکم! میں آپ کا طبی معاون ہوں۔ آج میں آپ کی کیسے مدد کر سکتا ہوں؟",
@@ -295,7 +331,7 @@ const MedicalChatStandalone = () => {
   const t = medicalData[language]
 
   return (
-    <div className="fixed inset-x-4 bottom-4 sm:bottom-20 sm:right-4 sm:left-auto w-auto sm:w-80 md:w-96 h-[calc(100vh-8rem)] sm:h-[500px] md:h-[600px] bg-white rounded-lg shadow-2xl border flex flex-col z-50 max-w-sm sm:max-w-none mx-auto sm:mx-0">
+  <div className="fixed inset-x-2 bottom-2 sm:bottom-6 sm:right-4 sm:left-auto w-auto sm:w-80 md:w-96 h-[calc(100vh-4rem)] sm:h-[540px] md:h-[650px] bg-white rounded-lg shadow-2xl border flex flex-col z-50 max-w-sm sm:max-w-none mx-auto sm:mx-0">
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white p-3 sm:p-4 rounded-t-lg flex-shrink-0">
         <div className="flex items-center justify-between">
@@ -326,7 +362,7 @@ const MedicalChatStandalone = () => {
       </div>
 
       {/* Messages */}
-      <div className="flex-1 p-3 sm:p-4 overflow-y-auto min-h-0">
+  <div className="flex-1 p-2 sm:p-4 overflow-y-auto min-h-0">
         <div className="space-y-3">
           {messages.map((message, index) => (
             <div key={index} className={`flex ${message.type === "user" ? "justify-end" : "justify-start"}`}>
@@ -355,10 +391,10 @@ const MedicalChatStandalone = () => {
 
       {/* Questions */}
       {chatStep === "waiting" && (
-        <div className="p-3 sm:p-4 border-t bg-gray-50 flex-shrink-0">
+        <div className="p-2 sm:p-3 border-t bg-gray-50 flex-shrink-0">
           <p className="text-sm font-medium text-gray-700 mb-2">{t.commonQuestions}</p>
-          <div className="grid grid-cols-1 gap-2 mb-3">
-            {t.questions.slice(0, 4).map((question, index) => (
+          <div className="max-h-32 sm:max-h-36 overflow-y-auto custom-scroll grid grid-cols-1 gap-2 mb-2 pr-1">
+            {t.questions.map((question, index) => (
               <button
                 key={index}
                 onClick={() => handleBuiltInQuestion(question)}
@@ -373,7 +409,7 @@ const MedicalChatStandalone = () => {
       )}
 
       {/* Input */}
-      <div className="p-3 sm:p-4 border-t flex-shrink-0">
+      <div className="p-2 sm:p-4 border-t flex-shrink-0">
         <div className="flex gap-2">
           <input
             type="text"

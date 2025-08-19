@@ -1,12 +1,15 @@
 "use client"
 
+
 import { Calendar, Clock, Phone } from "lucide-react"
 import { Card, CardContent } from "../ui/card"
 import { Button } from "../ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog" // Import Dialog components
-import ScheduleCalendar from "../Schedule-Calendar/schedule-calendar" // Import the new calendar component
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog"
+import ScheduleCalendar from "../Schedule-Calendar/schedule-calendar"
+import { useTranslation } from 'react-i18next'
 
 export default function Features() {
+  const { t } = useTranslation();
   return (
     <section className="py-16 sm:py-20 bg-transparent mt-[-150px] relative z-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,17 +23,16 @@ export default function Features() {
                   <Calendar className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
-                  Online Appointment
+                  {t('online_appointment_title')}
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                  Secure appointments the principle of online medicine and online continuous care and support for you
-                  and your loved ones.
+                  {t('online_appointment_desc')}
                 </p>
                 <a
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
                   href="#contact"
                 >
-                  MAKE APPOINTMENT
+                  {t('make_appointment')}
                 </a>
               </CardContent>
             </Card>
@@ -44,27 +46,27 @@ export default function Features() {
                   <Clock className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
-                  Working Hours
+                  {t('working_hours_title')}
                 </h3>
                 <div className="text-gray-700 space-y-3 mb-6 bg-blue-50 p-4 rounded-lg border border-blue-100 flex-grow flex flex-col justify-center">
                   <div className="flex justify-between font-medium">
-                    <span>SUN - WED</span>
-                    <span>7:00 - 18:00</span>
+                    <span>{t('working_hours_days1')}</span>
+                    <span>{t('working_hours_time1')}</span>
                   </div>
                   <div className="flex justify-between font-medium">
-                    <span>THU - FRI</span>
-                    <span>8:00 - 16:00</span>
+                    <span>{t('working_hours_days2')}</span>
+                    <span>{t('working_hours_time2')}</span>
                   </div>
                   <div className="flex justify-between font-medium">
-                    <span>SAT - SUN</span>
-                    <span>8:00 - 16:00</span>
+                    <span>{t('working_hours_days3')}</span>
+                    <span>{t('working_hours_time2')}</span>
                   </div>
                 </div>
                 {/* Dialog for Schedule Calendar */}
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105">
-                      VIEW SCHEDULE
+                      {t('view_schedule')}
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="w-full sm:max-w-7xl p-4 sm:p-6 overflow-hidden">
@@ -88,11 +90,10 @@ export default function Features() {
                   <Phone className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-2 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
-                  +92 317 3070894
+                  {t('callnow_title')}
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
-                  Experience all-time support for you. Contact the difference for physical or family medicine, answering
-                  confidential calls. Connect with us for any urgent needs.
+                  {t('callnow_desc')}
                 </p>
                 <a
                   href="https://wa.me/923173070894"
@@ -100,7 +101,7 @@ export default function Features() {
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
                 >
-                  CALL NOW
+                  {t('call_now')}
                 </a>
 
               </CardContent>

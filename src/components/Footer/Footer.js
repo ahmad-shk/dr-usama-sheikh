@@ -1,6 +1,8 @@
 import { Facebook, Twitter, Youtube, Phone, Mail, MapPin, ArrowUp, Instagram } from "lucide-react"
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
+  const { t } = useTranslation()
   return (
     <footer className="bg-gradient-to-br from-blue-800 to-blue-950 text-white pt-16 pb-8 mt-16 shadow-inner-xl relative overflow-hidden">
       {/* Subtle background pattern/texture */}
@@ -10,11 +12,10 @@ const Footer = () => {
         {/* About */}
         <div className="flex flex-col items-start">
           <h3 className="font-extrabold text-2xl mb-6 text-blue-100 border-b-2 border-blue-600 pb-2 w-full">
-            About Clinic
+            {t('aboutClinic')}
           </h3>
           <p className="text-sm text-blue-200 leading-relaxed mb-6">
-            We provide professional care for your health, focusing on both mental and physical well-being. Our team is
-            dedicated to your holistic health.
+            {t('aboutClinicDesc')}
           </p>
           <div className="flex space-x-4 mt-auto">
             <a
@@ -68,7 +69,7 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="flex flex-col items-start">
           <h3 className="font-extrabold text-2xl mb-6 text-blue-100 border-b-2 border-blue-600 pb-2 w-full">
-            Quick Links
+            {t('quickLinks')}
           </h3>
           <ul className="space-y-3 text-blue-200">
             <li>
@@ -79,7 +80,7 @@ const Footer = () => {
                 <span className="mr-2 text-blue-400 group-hover:translate-x-1 transition-transform duration-200">
                   &rsaquo;
                 </span>{" "}
-                Home
+                {t('home')}
               </a>
             </li>
             <li>
@@ -87,7 +88,7 @@ const Footer = () => {
                 <span className="mr-2 text-blue-400 group-hover:translate-x-1 transition-transform duration-200">
                   &rsaquo;
                 </span>{" "}
-                About
+                {t('about')}
               </a>
             </li>
             <li>
@@ -95,7 +96,7 @@ const Footer = () => {
                 <span className="mr-2 text-blue-400 group-hover:translate-x-1 transition-transform duration-200">
                   &rsaquo;
                 </span>{" "}
-                Services
+                {t('services')}
               </a>
             </li>
             <li>
@@ -106,7 +107,7 @@ const Footer = () => {
                 <span className="mr-2 text-blue-400 group-hover:translate-x-1 transition-transform duration-200">
                   &rsaquo;
                 </span>{" "}
-                Contact
+                {t('contact')}
               </a>
             </li>
           </ul>
