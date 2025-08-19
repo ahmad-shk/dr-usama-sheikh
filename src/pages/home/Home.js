@@ -5,6 +5,7 @@ import Features from '../../components/Features/Features';
 import About from '../../components/About/About';
 import Counter from '../../components/Counter/Counter';
 import Services from '../../components/Services/Services';
+import MedicalChatStandalone from '../../components/MedicalChatStandalone/MedicalChatStandalone';
 
 function Home() {
 
@@ -23,6 +24,7 @@ function Home() {
         <Services />
       </div>
       <Appoinment />
+      <MedicalChatStandalone />
     </>
   );
 
