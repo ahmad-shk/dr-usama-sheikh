@@ -1,5 +1,6 @@
-"use client"
 
+"use client"
+import axios from "axios"
 import { useState, useRef, useEffect } from "react"
 import { MessageCircle, X, RotateCcw, Send, Stethoscope } from "lucide-react"
 
@@ -9,6 +10,7 @@ const MedicalChatStandalone = () => {
   const [messages, setMessages] = useState([])
   const [inputMessage, setInputMessage] = useState("")
   const [chatStep, setChatStep] = useState("waiting")
+  const [userName, setUserName] = useState("")
   const [hasUsedBuiltInQuestions, setHasUsedBuiltInQuestions] = useState(false)
   const [phoneAttempts, setPhoneAttempts] = useState(0)
   const messagesEndRef = useRef(null)
@@ -192,6 +194,7 @@ const MedicalChatStandalone = () => {
       console.log("[v0] Has used built-in questions:", hasUsedBuiltInQuestions)
       console.log("[v0] Current message:", currentMessage)
 
+
       if (chatStep === "waiting" && !hasUsedBuiltInQuestions) {
         if (detectDoctorRequest(currentMessage)) {
           botResponse = t.teamOffline
@@ -203,6 +206,7 @@ const MedicalChatStandalone = () => {
           console.log("[v0] Regular message, asking for name")
         }
       } else if (chatStep === "asking_name") {
+        setUserName(currentMessage)
         botResponse = t.askPhone
         setChatStep("asking_phone")
         console.log("[v0] Name provided, asking for phone")
@@ -210,7 +214,17 @@ const MedicalChatStandalone = () => {
         if (isValidPakistaniPhone(currentMessage)) {
           botResponse = t.teamContact
           setChatStep("completed")
-          console.log("[v0] Valid phone provided, completing chat")
+          // Send API call with name and phone
+          try {
+            const baseUrl = process.env.REACT_APP_API_BASE_URL || import.meta?.env?.VITE_API_BASE_URL || "";
+            const endpoint = baseUrl ? `${baseUrl.replace(/\/$/, "")}/api/chats` : "/api/chats";
+            axios.post(endpoint, { name: userName, phone: currentMessage })
+              .then(res => console.log("[v0] Chat API response:", res.data))
+              .catch(err => console.error("[v0] Chat API error:", err));
+          } catch (err) {
+            console.error("[v0] Chat API error:", err)
+          }
+          console.log("[v0] Valid phone provided, completing chat and sending API call")
         } else {
           const newAttempts = phoneAttempts + 1
           setPhoneAttempts(newAttempts)

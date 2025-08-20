@@ -3,7 +3,7 @@ import * as ToastPrimitives from "@radix-ui/react-toast"
 import { cva } from "class-variance-authority"
 import { X, CheckCircle, Info } from "lucide-react"
 
-import { cn } from "@/lib/utils"
+import { cn } from "../../lib/utils"
 
 const ToastProvider = ToastPrimitives.Provider
 
@@ -26,7 +26,7 @@ const toastVariants = cva(
       variant: {
         default: "border-blue-300 bg-gradient-to-br from-light-blue-100 to-blue-200 text-blue-950",
         destructive: "destructive group border-red-500 bg-red-500 text-white",
-        success: "group border-blue-500 bg-gradient-to-br from-light-blue-500 to-blue-700 text-white",
+  success: "group border-green-600 bg-green-600 text-white border-2 border-green-700 shadow-xl",
       },
     },
     defaultVariants: {
@@ -78,12 +78,12 @@ const ToastClose = React.forwardRef(({ className, ...props }, ref) => (
 ToastClose.displayName = ToastPrimitives.Close.displayName
 
 const ToastTitle = React.forwardRef(({ className, ...props }, ref) => (
-  <ToastPrimitives.Title ref={ref} className={cn("text-lg font-bold", className)} {...props} />
+  <ToastPrimitives.Title ref={ref} className={cn("text-lg font-bold tracking-wide", className)} {...props} />
 ))
 ToastTitle.displayName = ToastPrimitives.Title.displayName
 
 const ToastDescription = React.forwardRef(({ className, ...props }, ref) => (
-  <ToastPrimitives.Description ref={ref} className={cn("text-sm opacity-90", className)} {...props} />
+  <ToastPrimitives.Description ref={ref} className={cn("text-base opacity-95 font-medium", className)} {...props} />
 ))
 ToastDescription.displayName = ToastPrimitives.Description.displayName
 

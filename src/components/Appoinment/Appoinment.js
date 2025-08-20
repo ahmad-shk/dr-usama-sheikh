@@ -3,9 +3,11 @@ import { Phone, ArrowRight } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { useToast } from "../ui/use-toast";
 
 const PatientQuery = () => {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const initialValues = {
     name: "",
     phone: "",
@@ -30,14 +32,26 @@ const PatientQuery = () => {
       );
 
       if (response.data?.success || response.status === 200) {
-        alert("✅ Query successfully sent!");
+        toast({
+          title: t('querySentTitle') !== 'querySentTitle' ? t('querySentTitle') : "Query Sent!",
+          description: t('querySentDesc') !== 'querySentDesc' ? t('querySentDesc') : "Aapki query hamari medical team ko mil gayi hai. Bohat jald hamara representative aap se rabta karega.",
+          variant: "success"
+        });
         resetForm();
       } else {
-        alert("❌ Query send nahi ho saki. Dobara try karein.");
+        toast({
+          title: t('queryFailedTitle') !== 'queryFailedTitle' ? t('queryFailedTitle') : "Query Send Failed",
+          description: t('queryFailedDesc') !== 'queryFailedDesc' ? t('queryFailedDesc') : "Query send nahi ho saki. Dobara try karein.",
+          variant: "destructive"
+        });
       }
     } catch (error) {
       console.error("Query bhejnay mein error:", error);
-      alert("⚠️ Query send nahi ho saka.");
+      toast({
+        title: t('queryFailedTitle') !== 'queryFailedTitle' ? t('queryFailedTitle') : "Query Send Failed",
+        description: t('queryFailedDesc') !== 'queryFailedDesc' ? t('queryFailedDesc') : "Query send nahi ho saka.",
+        variant: "destructive"
+      });
     }
   };
 
