@@ -76,7 +76,7 @@ const Header = () => {
             alt="Usama Sheikh Clinic Logo"
             className="h-10 w-10 rounded-full shadow-xl border-2 border-blue-300 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3 group-hover:shadow-blue-200/70"
           />
-          <span className="font-extrabold text-2xl text-white tracking-wide drop-shadow-lg transition-colors duration-300 group-hover:text-blue-100">
+          <span className="font-extrabold text-lg sm:text-2xl text-white tracking-wide drop-shadow-lg transition-colors duration-300 group-hover:text-blue-100 leading-tight sm:leading-normal">
             DR Usama Sheikh
           </span>
         </a>
@@ -171,7 +171,7 @@ const Header = () => {
             ))}
             <li className="mt-6 md:mt-0 md:ml-8">
               <a
-                href="#appointment"
+                href="#contact"
                 className="inline-flex items-center justify-center px-7 py-3 border-2 border-blue-300 text-base font-bold rounded-full text-white bg-gradient-to-r from-blue-600 via-purple-500 to-blue-700 shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 active:scale-95 group relative overflow-hidden backdrop-blur-md glassmorphism-btn"
                 style={{ position: 'relative', zIndex: 1 }}
               >

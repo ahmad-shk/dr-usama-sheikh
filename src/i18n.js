@@ -9,16 +9,16 @@ const resources = {
   ur: { translation: ur },
 };
 
-// Get initial language from localStorage if present, else default to 'en'
+// Get initial language from localStorage if present, else default to 'ur'
 const storedLang = typeof window !== 'undefined' ? localStorage.getItem('lang') : null;
-const initialLang = storedLang || 'en';
+const initialLang = storedLang || 'ur';
 
 i18n
   .use(initReactI18next)
   .init({
     resources,
     lng: initialLang,
-    fallbackLng: 'en',
+  fallbackLng: 'ur',
     interpolation: { escapeValue: false },
   });
 
