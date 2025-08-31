@@ -100,6 +100,7 @@ export default function Features() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
+                  onClick={() => { if (window.fbq) { window.fbq('track', 'Lead'); } }}
                 >
                   {t('call_now')}
                 </a>

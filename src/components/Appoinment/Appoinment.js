@@ -72,6 +72,7 @@ const PatientQuery = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white text-2xl font-bold flex items-center gap-3 hover:text-blue-100 transition-colors duration-200"
+                onClick={() => { if (window.fbq) { window.fbq('track', 'Lead'); } }}
               >
                 <Phone className="text-3xl" />
                 +92 317 3070894
@@ -162,6 +163,7 @@ const PatientQuery = () => {
                   <button
                     type="submit"
                     className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition flex items-center gap-2 shadow-lg"
+                    onClick={() => { if (window.fbq) { window.fbq('track', 'Lead'); } }}
                   >
                     SEND QUERY <ArrowRight className="text-lg" />
                   </button>
