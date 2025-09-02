@@ -32,6 +32,9 @@ const PatientQuery = () => {
       );
 
       if (response.data?.success || response.status === 200) {
+        if (window.fbq) {
+          window.fbq('track', 'Lead');
+        }
         toast({
           title: t('querySentTitle') !== 'querySentTitle' ? t('querySentTitle') : "Query Sent!",
           description: t('querySentDesc') !== 'querySentDesc' ? t('querySentDesc') : "Aapki query hamari medical team ko mil gayi hai. Bohat jald hamara representative aap se rabta karega.",
@@ -163,7 +166,6 @@ const PatientQuery = () => {
                   <button
                     type="submit"
                     className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-full transition flex items-center gap-2 shadow-lg"
-                    onClick={() => { if (window.fbq) { window.fbq('track', 'Lead'); } }}
                   >
                     SEND QUERY <ArrowRight className="text-lg" />
                   </button>
