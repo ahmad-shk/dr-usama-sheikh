@@ -8,6 +8,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import ScheduleCalendar from "../Schedule-Calendar/schedule-calendar"
 import { useTranslation } from 'react-i18next'
 import { trackEvent } from "../../lib/pixel"
+import { useState } from "react"
 
 export default function Features() {
   const [waClicked, setWaClicked] = useState(false);
