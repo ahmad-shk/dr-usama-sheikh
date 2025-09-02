@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { useToast } from "../ui/use-toast";
+import { useState } from "react";
 
 const PatientQuery = () => {
   const [waClicked, setWaClicked] = useState(false);
