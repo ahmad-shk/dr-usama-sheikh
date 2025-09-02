@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import { useToast } from "../ui/use-toast";
 
 const PatientQuery = () => {
+  const [waClicked, setWaClicked] = useState(false);
   const { t } = useTranslation();
   const { toast } = useToast();
   const initialValues = {
@@ -75,7 +76,12 @@ const PatientQuery = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white text-2xl font-bold flex items-center gap-3 hover:text-blue-100 transition-colors duration-200"
-                onClick={() => { if (window.fbq) { window.fbq('track', 'Lead'); } }}
+                onClick={() => {
+                  if (!waClicked && window.fbq) {
+                    window.fbq('track', 'Lead');
+                    setWaClicked(true);
+                  }
+                }}
               >
                 <Phone className="text-3xl" />
                 +92 317 3070894

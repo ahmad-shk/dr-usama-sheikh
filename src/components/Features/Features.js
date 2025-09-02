@@ -10,7 +10,14 @@ import { useTranslation } from 'react-i18next'
 import { trackEvent } from "../../lib/pixel"
 
 export default function Features() {
-  
+  const [waClicked, setWaClicked] = useState(false);
+
+  const handleClick = () => {
+    if (!waClicked) {
+      trackEvent("Lead", { method: "WhatsApp" });
+      setWaClicked(true);
+    }
+  };
   const { t } = useTranslation();
   return (
     <section className="py-16 sm:py-20 bg-transparent mt-[-150px] relative z-20">
@@ -102,7 +109,7 @@ export default function Features() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-full px-8 py-3 shadow-lg transition-all duration-300 transform hover:scale-105"
-                   onClick={() => trackEvent("Lead", { method: "WhatsApp" })}
+                   onClick={handleClick}
                 >
                   {t('call_now')}
                 </a>
